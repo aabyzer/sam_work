@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css" required>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Коллекция рецептов</h1>
+     <form action="/search" method="get" class="search-form">
+        <input type="text" name="q" placeholder="Поиск по названию рецепта..." value="{{ search_query or '' }}">
+        <button type="submit"> Найти</button>
+     </form>
+    <h1>Фильтрация</h1>
+    <ul>
+        <a href="/sort/soup">Супы</a> |
+        <a href="/sort/salad">Салаты</a> |
+        <a href="/sort/desserts">Десерты</a>
+    </ul>
+    <ul>
+    {% for recipe in recipes %}
+        <li>
+            <p>{{ recipe.name }}</p>
+            <a href="/detail/{{ recipe.id }}">Подробнее</a>
+            <a href="/edit/{{ recipe.id }}"> Редактировать</a>
+            <a href="/delete/{{ recipe.id }}"> Удалить</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h1>Добавление записи</h1>
+    <form method="POST" action="/add" class="add_form">
+        <input type="text" name="name" placeholder="Название" required>
+        <input type="text" name="category" placeholder="Категория" required>
+        <textarea name="ingredients" placeholder="Ингредиенты" required></textarea>
+        <textarea name="cooking" placeholder="Способ приготовления" required></textarea>
+        <input type="number" name="time" placeholder="Время приготовления" required>
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

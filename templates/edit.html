@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css" required>
+    <title>Document</title>
+</head>
+<body>
+     <h1>Редактирование записи</h1>
+    {% if message %}
+        <p class="error">{{ message }}</p>
+    {% endif %}
+    <form method="POST">
+        <input type="text" name="name" placeholder="Название" required>
+        <input type="text" name="category" placeholder="Категория" required>
+        <textarea name="ingredients" placeholder="Ингредиенты" required></textarea>
+        <textarea name="cooking" placeholder="Способ приготовления" required></textarea>
+        <input type="number" name="time" placeholder="Время приготовления" required>
+        <button type="submit">Сохранить</button>
+        <a href="/">Отмена</a>
+    </form>
+</body>
+</html>

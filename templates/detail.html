@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css" required>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Просмотр записи</h1>
+    <h1>Название: {{ recipe.name }}</h1>
+    <p>Категория: {{ recipe.category }}</p>
+    <p>Ингредиенты: {{ recipe.ingredients }}</p>
+    <p>Способ приготовления: {{ recipe.cooking }}</p>
+    {% if recipe.time % 60 == 0 %}
+        <p>Время: {{ recipe.time // 60 }} ч.</p>
+    {% elif recipe.time >= 60 %}
+        <p>Время: {{ recipe.time // 60 }} ч. и {{ recipe.time % 60 }} мин.</p>
+    {% else %}
+        <p>Время: {{ recipe.time }} мин.</p>
+    {% endif %}
+    <a href="/">Назад</a>
+</body>
+</html>
