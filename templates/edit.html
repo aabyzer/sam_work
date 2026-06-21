@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css" required>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/style_edit.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
     {% if message %}
         <p class="error">{{ message }}</p>
     {% endif %}
-    <form method="POST">
+    <form method="POST" class="edit-form">
         <input type="text" name="name" placeholder="Название" required>
         <input type="text" name="category" placeholder="Категория" required>
         <textarea name="ingredients" placeholder="Ингредиенты" required></textarea>

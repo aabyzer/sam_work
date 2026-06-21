@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/style.css" required>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/style.css') }}">
     <title>Document</title>
 </head>
 <body>
-    <h1>Коллекция рецептов</h1>
+    <h1><a href="/">Коллекция рецептов</a></h1>
      <form action="/search" method="get" class="search-form">
         <input type="text" name="q" placeholder="Поиск по названию рецепта..." value="{{ search_query or '' }}">
-        <button type="submit"> Найти</button>
+        <button type="submit">Найти</button>
      </form>
     <h1>Фильтрация</h1>
     <ul>

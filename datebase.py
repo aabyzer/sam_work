@@ -4,12 +4,18 @@ DATABASE = 'recipebook.db'
 
 
 def get_db_connection():
+    """
+    Подключение к базе данных
+    """
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
 
 
 def init_db():
+    """
+    Создание таблиц данных
+    """
     conn = get_db_connection()
     conn.execute('''
         CREATE TABLE IF NOT EXISTS recipes (
@@ -34,35 +40,9 @@ def init_db():
     conn.close()
 
 
-def reg_user(username, password):
-    """
-    Регистрация пользователя
-    """
-    conn = get_db_connection()
-    conn.execute(
-        'INSERT INTO users (username, password) VALUES (?, ?)', (username, password)
-    )
-    conn.commit()
-    conn.close()
-
-
-def check_user(username, password):
-    """
-    Проверяет, существует ли пользователь с таким логином и паролем.
-    Возвращает True, если пользователь найден, иначе False.
-    """
-    conn = get_db_connection()
-    user = conn.execute(
-        'SELECT * FROM users WHERE username = ? AND password = ?',
-        (username, password)
-    ).fetchone()
-    conn.close()
-    return user is not None
-
-
 def get_all_recipes():
     """
-    Вывод всех рецептов
+    Отображение всех рецептов
     """
     conn = get_db_connection()
     recipes = conn.execute(
@@ -73,6 +53,9 @@ def get_all_recipes():
 
 
 def get_recipes(item_id):
+    """
+    Отображение одного рецепта
+    """
     conn = get_db_connection()
     recipes = conn.execute(
         'SELECT * FROM recipes WHERE id = ?', (item_id,)
